@@ -49,7 +49,7 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.a1s2d333"  // 设置正确的 group ID
+                groupId = "https://github.com/a1s2d333/repo-library"  // 设置正确的 group ID
                 artifactId = "my-library-toast"  // 模块名
                 version = "1.0.0"  // 版本号
             }
