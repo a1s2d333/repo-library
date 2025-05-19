@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")// 添加 Maven Publish 插件
 }
 
 android {
@@ -40,4 +41,18 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+                groupId = "com.github.a1s2d333"  // 设置正确的 group ID
+                artifactId = "my-library-toast"  // 模块名
+                version = "1.0.0"  // 版本号
+            }
+        }
+    }
 }
