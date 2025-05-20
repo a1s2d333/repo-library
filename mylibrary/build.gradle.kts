@@ -58,11 +58,24 @@ afterEvaluate {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.a1s2d333" // 严格匹配 GitHub 用户名
-                artifactId = "my-library-toast"   // 模块名
+                groupId = "com.github.a1s2d333"
+                artifactId = "my-library-toast"
                 version = "2.0.0"
 
-                // 必须添加的 POM 元数据
+                // 添加源码和 Javadoc 包
+                val sourcesJar by tasks.creating(Jar::class) {
+                    archiveClassifier.set("sources")
+                    from(android.sourceSets["main"].java.srcDirs)
+                }
+
+                val javadocJar by tasks.creating(Jar::class) {
+                    archiveClassifier.set("javadoc")
+                    from("$buildDir/docs/javadoc")
+                }
+
+                artifact(sourcesJar)
+                artifact(javadocJar)
+
                 pom {
                     name.set("My Library")
                     description.set("A library for displaying toasts")
@@ -88,6 +101,7 @@ afterEvaluate {
         }
     }
 }
+
 //afterEvaluate {
 //    publishing {
 //        publications {
