@@ -80,26 +80,6 @@ afterEvaluate {
                     scm {
                         url.set("https://github.com/a1s2d333/repo-library")
                     }
-
-                    withXml {
-                        val root = asNode()
-                        val dependenciesNode = root.appendNode("dependencies")
-
-                        mapOf(
-                            "androidx.core:core-ktx" to "1.10.1",
-                            "androidx.appcompat:appcompat" to "1.6.1",
-                            "com.google.code.gson:gson" to "2.8.9",
-                            "org.greenrobot:eventbus" to "3.2.0",
-                            "androidx.cardview:cardview" to "1.0.0",
-                            "com.squareup.okio:okio" to "3.6.0"
-                        ).forEach { (coord, version) ->
-                            val depNode = dependenciesNode.appendNode("dependency")
-                            val (group, name) = coord.split(":")
-                            depNode.appendNode("groupId", group)
-                            depNode.appendNode("artifactId", name)
-                            depNode.appendNode("version", version)
-                        }
-                    }
                 }
             }
         }
