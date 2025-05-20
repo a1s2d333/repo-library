@@ -60,7 +60,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.a1s2d333"
                 artifactId = "my-library-toast"
-                version = "3.0.0"
+                version = "4.0.0"
 
                 // 添加源码和 Javadoc 包
                 val sourcesJar by tasks.creating(Jar::class) {
@@ -102,40 +102,3 @@ afterEvaluate {
     }
 }
 
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            create<MavenPublication>("release") {
-//                from(components["release"])
-//                groupId = "com.github.a1s2d333"
-//                artifactId = "my-library-toast"
-//                version = "2.0.0"
-//
-//                pom {
-//                    name.set("My Library Toast")
-//                    description.set("An Android library that uses EventBus.")
-//                    url.set("https://github.com/a1s2d333/repo-library")
-//
-//                    licenses {
-//                        license {
-//                            name.set("MIT License")
-//                            url.set("https://opensource.org/licenses/MIT")
-//                        }
-//                    }
-//
-//                    developers {
-//                        developer {
-//                            id.set("a1s2d333")
-//                            name.set("dsr")
-//                            email.set("1261903053@qq.com")
-//                        }
-//                    }
-//
-//                    scm {
-//                        url.set("https://github.com/a1s2d333/repo-library")
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}

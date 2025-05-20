@@ -70,6 +70,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    
-    implementation("com.github.a1s2d333:repo-library:v1.0.0")
+
+//    implementation("com.github.a1s2d333:repo-library:v1.0.0")
 }
