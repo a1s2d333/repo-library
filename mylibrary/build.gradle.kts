@@ -34,12 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-//    publishing {
-//        singleVariant("release") {
-//            withSourcesJar()
-//            withJavadocJar()
-//        }
-//    }
+
 }
 
 dependencies {
@@ -60,7 +55,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.a1s2d333"
                 artifactId = "my-library-toast"
-                version = "4.0.0"
+                version = "4.1.0"
 
                 // 添加源码和 Javadoc 包
                 val sourcesJar by tasks.creating(Jar::class) {
