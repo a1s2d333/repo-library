@@ -34,6 +34,12 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+//    publishing {
+//        singleVariant("release") {
+//            withSourcesJar()
+//            withJavadocJar()
+//        }
+//    }
 }
 
 dependencies {
@@ -47,28 +53,26 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.squareup.okio:okio:3.6.0")
 }
-
 afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.a1s2d333"
-                artifactId = "my-library-toast"
+                groupId = "com.github.a1s2d333" // 严格匹配 GitHub 用户名
+                artifactId = "my-library-toast"   // 模块名
                 version = "2.0.0"
 
+                // 必须添加的 POM 元数据
                 pom {
-                    name.set("My Library Toast")
-                    description.set("An Android library that uses EventBus.")
+                    name.set("My Library")
+                    description.set("A library for displaying toasts")
                     url.set("https://github.com/a1s2d333/repo-library")
-
                     licenses {
                         license {
-                            name.set("MIT License")
+                            name.set("MIT")
                             url.set("https://opensource.org/licenses/MIT")
                         }
                     }
-
                     developers {
                         developer {
                             id.set("a1s2d333")
@@ -76,7 +80,6 @@ afterEvaluate {
                             email.set("1261903053@qq.com")
                         }
                     }
-
                     scm {
                         url.set("https://github.com/a1s2d333/repo-library")
                     }
@@ -85,3 +88,40 @@ afterEvaluate {
         }
     }
 }
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            create<MavenPublication>("release") {
+//                from(components["release"])
+//                groupId = "com.github.a1s2d333"
+//                artifactId = "my-library-toast"
+//                version = "2.0.0"
+//
+//                pom {
+//                    name.set("My Library Toast")
+//                    description.set("An Android library that uses EventBus.")
+//                    url.set("https://github.com/a1s2d333/repo-library")
+//
+//                    licenses {
+//                        license {
+//                            name.set("MIT License")
+//                            url.set("https://opensource.org/licenses/MIT")
+//                        }
+//                    }
+//
+//                    developers {
+//                        developer {
+//                            id.set("a1s2d333")
+//                            name.set("dsr")
+//                            email.set("1261903053@qq.com")
+//                        }
+//                    }
+//
+//                    scm {
+//                        url.set("https://github.com/a1s2d333/repo-library")
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
