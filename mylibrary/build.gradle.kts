@@ -60,7 +60,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.a1s2d333"
                 artifactId = "my-library-toast"
-                version = "2.0.0"
+                version = "3.0.0"
 
                 // 添加源码和 Javadoc 包
                 val sourcesJar by tasks.creating(Jar::class) {
