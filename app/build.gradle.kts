@@ -69,4 +69,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    
+    implementation("com.github.a1s2d333:repo-library:v1.0.0")
 }

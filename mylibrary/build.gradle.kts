@@ -1,15 +1,16 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("maven-publish")// 添加 Maven Publish 插件
+    id("maven-publish")
 }
 
 android {
     namespace = "com.demo.mylibrary"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 24
+        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -24,34 +25,82 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-}
+    implementation("com.google.android.material:material:1.9.0")
 
+    // 第三方依赖
+    implementation("com.google.code.gson:gson:2.8.9")
+    implementation("org.greenrobot:eventbus:3.2.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.squareup.okio:okio:3.6.0")
+}
 
 afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
                 from(components["release"])
-                groupId = "com.github.a1s2d333"  // 设置正确的 group ID
-                artifactId = "my-library-toast"  // 模块名
-                version = "1.0.0"  // 版本号
+                groupId = "com.github.a1s2d333"
+                artifactId = "my-library-toast"
+                version = "2.0.0"
+
+                pom {
+                    name.set("My Library Toast")
+                    description.set("An Android library that uses EventBus.")
+                    url.set("https://github.com/a1s2d333/repo-library")
+
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/licenses/MIT")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("a1s2d333")
+                            name.set("dsr")
+                            email.set("1261903053@qq.com")
+                        }
+                    }
+
+                    scm {
+                        url.set("https://github.com/a1s2d333/repo-library")
+                    }
+
+                    withXml {
+                        val root = asNode()
+                        val dependenciesNode = root.appendNode("dependencies")
+
+                        mapOf(
+                            "androidx.core:core-ktx" to "1.10.1",
+                            "androidx.appcompat:appcompat" to "1.6.1",
+                            "com.google.code.gson:gson" to "2.8.9",
+                            "org.greenrobot:eventbus" to "3.2.0",
+                            "androidx.cardview:cardview" to "1.0.0",
+                            "com.squareup.okio:okio" to "3.6.0"
+                        ).forEach { (coord, version) ->
+                            val depNode = dependenciesNode.appendNode("dependency")
+                            val (group, name) = coord.split(":")
+                            depNode.appendNode("groupId", group)
+                            depNode.appendNode("artifactId", name)
+                            depNode.appendNode("version", version)
+                        }
+                    }
+                }
             }
         }
     }
