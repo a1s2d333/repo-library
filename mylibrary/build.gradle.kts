@@ -47,6 +47,8 @@ dependencies {
     implementation("org.greenrobot:eventbus:3.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.squareup.okio:okio:3.6.0")
+    implementation("com.github.getActivity:XXPermissions:21.3")
+
 }
 afterEvaluate {
     publishing {
@@ -55,7 +57,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.a1s2d333"
                 artifactId = "my-library-toast"
-                version = "4.1.0"
+                version = "4.2.0"
 
                 // 添加源码和 Javadoc 包
                 val sourcesJar by tasks.creating(Jar::class) {
